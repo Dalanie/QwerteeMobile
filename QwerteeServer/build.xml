@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="dist" name="QwerteeServer" xmlns:sonar="antlib:org.sonar.ant">
+	<property environment="env" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="targetVersion" value="1.7" />
+	<property name="sourceVersion" value="1.7" />
+	<property name="apt_generated" value=".apt_generated" />
+	<property name="src" value="src" />
+	<property name="bin" value="bin" />
+	<property name="libs" value="libs" />
+	<property name="test" value="test" />
+	<property name="antfile" value="build.xml" />
+	<property name="mainClass" value="com.qwertee.general.Main" />
+	<property name="jarFilename" value="qwertee.jar" />
+	
+	<path id="QwerteeServer.classpath">
+		<pathelement location="${bin}" />
+		<fileset dir="${libs}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	<target name="init" description="creates dirs and copies files">
+		<mkdir dir="${bin}" />
+		<copy includeemptydirs="false" todir="${bin}">
+			<fileset dir="${src}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="clean" description="deletes built files">
+		<delete dir="${bin}" />
+	</target>
+	<target depends="clean" name="cleanall" description="also cleans common">
+		</target>
+	<target depends="build-subprojects,build-project" name="build" description="builds server and common" />
+	<target depends="init" name="build-project" description="builds server">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="${bin}" includeantruntime="false" source="${sourceVersion}" target="${targetVersion}" encoding="UTF-8">
+			<src path="${src}" />
+			<classpath refid="QwerteeServer.classpath" />
+		</javac>
+	</target>
+	<target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects" />
+	<target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+		<copy todir="${ant.library.dir}">
+			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
+		</copy>
+		<unzip dest="${ant.library.dir}">
+			<patternset includes="jdtCompilerAdapter.jar" />
+			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
+		</unzip>
+	</target>
+	<target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
+		<antcall target="build" />
+	</target>
+	<target name="Main" description="executes the server without JAR. build target must be executed before that.">
+		<java classname="${mainClass}" failonerror="true" fork="yes">
+			<classpath refid="QwerteeServer.classpath" />
+		</java>
+	</target>
+	
+	<target name="unittest" description="Execute unit tests" depends="build">
+		<!-- <ivy:cachepath conf="test" pathid="test.refid"/> -->
+		<mkdir dir="tmp/rawtestoutput" />
+		<junit printsummary="true" failureproperty="junit.failure">
+			<!-- N.b. use failureproperty instead of haltonfailure, because if we 
+				use the former, we will get no detailed report about the failure. If the 
+				test fails, the fail element below will still assure that the Ant run will 
+				exit with error status. -->
+			<classpath refid="QwerteeServer.classpath" />
+			<classpath path="classes:test" />
+			<!-- Ant provides several ways to set the classpath. The critical thing 
+				is just that the final classpath for the junit task must include the junit-4.x 
+				jar file, the test classes, and all classes referred to directly or indirectly 
+				by your test classes. -->
+
+			<batchtest todir="tmp/rawtestoutput">
+				<fileset dir="${test}" />
+				<formatter type="plain" />
+			</batchtest>
+			<!-- In the unlikely case that you just have a single test class, use 
+				a test element like this instead of the batchtest element above: <test name='com.admc.jamama.smtp.SMTPTest'/> 
+				You can nest the formatter inside it, just like batchtest. -->
+
+			<!-- You can use sysproperty elements to pass configuration settings to 
+				your test classes, or to application classes they will run: <sysproperty 
+				key="targetserver.test" value="mercedes"/> -->
+		</junit>
+		<!-- <junitreport todir="tmp"> <fileset dir="tmp/rawtestoutput" /> <report 
+			todir="test-reports" /> </junitreport>  -->
+			<fail if="junit.failure" message="Unit 
+			test(s) failed. See reports!" />
+	</target>
+
+	<target name="dist" depends="build, dist-subprojects" description="makes a JAR file for server">
+		<jar jarfile="${jarFilename}" duplicate="add">
+			<fileset dir="${bin}" includes="**/*.*" />
+			<zipgroupfileset dir="${libs}" includes="**/*.jar" />
+			<!-- Needed for GeoTools to work -->
+			<zipgroupfileset dir="data" includes="*.zip"/>
+			
+			<manifest>
+				<attribute name="Main-Class" value="${mainClass}" />
+				<attribute name="Class-Path" value="${QwerteeServer.classpath}" /><!-- NOT EXISTANT!!!-->
+				<!-- Needed for JAI ImageIO to work -->
+				<attribute name="Specification-Title" value="Java Advanced Imaging Image I/O Tools" />
+				<attribute name="Specification-Version" value="1.0-mr" />
+				<attribute name="Specification-Vendor" value="Sun Microsystems, Inc." />
+				<attribute name="Implementation-Title" value="com.sun.media.imageio" />
+				<attribute name="Implementation-Version" value="1.0_01" />
+				<attribute name="Implementation-Vendor" value="Sun Microsystems, Inc." />
+				<attribute name="Extension-Name" value="com.sun.media.imageio" />
+			</manifest>
+		</jar>
+	</target>
+</project>

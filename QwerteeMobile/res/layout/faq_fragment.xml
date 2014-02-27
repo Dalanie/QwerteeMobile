@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginTop="5dp"
+    android:orientation="vertical" >
+
+    <com.tjerkw.slideexpandable.library.ActionSlideExpandableListView
+        android:id="@+id/faq"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/background_vote_item"
+        android:divider="#256DE3"
+        android:dividerHeight="4dp"
+        android:groupIndicator="@drawable/qwertee_q"
+        android:padding="5dp" />
+
+</LinearLayout>

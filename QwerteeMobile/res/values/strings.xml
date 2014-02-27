@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">QwerteeMobile</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="vote">Vote</string>
+    <string name="author">by author133742</string>
+    <string name="imageName">AwesomeName!</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="tees">TEES</string>
+    <string name="todays_tee">Today\'s Tee</string>
+    <string name="about_qwertee">What is Qwertee?</string>
+
+</resources>

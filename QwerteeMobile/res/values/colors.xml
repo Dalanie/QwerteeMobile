@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="qwertee_blue">#256DE3</color>
+    <color name="qwertee_black">#333333</color>
+    <color name="qwertee_yellow">#f9f206</color>
+    <color name="qwertee_yellow_transparent">#d8f9f206</color>
+    <color name="qwertee_white_transparent">#99F2F2F2</color>
+    <color name="qwertee_gray">#A6A8AB</color>
+    <color name="qwertee_selected_gray">#666768</color>
+    <color name="qwertee_white">#ffffff</color>
+    <color name="alternative_black">#2d2d2d</color>
+</resources>

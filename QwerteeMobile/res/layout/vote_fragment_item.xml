@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_vote_item"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <com.qwertee.utilities.AnimatedNetworkImageView
+        android:id="@+id/vote_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitStart"
+		android:adjustViewBounds="true"
+        android:src="@drawable/placeholder" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:layout_marginBottom="2dip"
+        android:layout_marginTop="2dip"
+        android:background="@color/qwertee_blue" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dip"
+        android:layout_marginTop="2dip" >
+
+        <TextView
+            android:id="@+id/vote_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/voteButton"
+            android:layout_marginRight="15dip"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/voteButton"
+            android:drawableLeft="@drawable/vote"
+            android:drawablePadding="3dp"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/comment_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/voteButton"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/vote_text"
+            android:drawableLeft="@drawable/comment"
+            android:drawablePadding="3dp"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/voteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/vote" 
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/voteshape"/>
+
+        <TextView
+            android:id="@+id/imageName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/voteButton"
+            android:singleLine="false"
+            android:text="@string/imageName"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/authorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="@string/author"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
+
+</LinearLayout>

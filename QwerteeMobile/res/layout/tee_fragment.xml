@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_vote_item"
+    android:padding="5dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:padding="5dp" >
+
+        <com.qwertee.utilities.WrapContentHeightViewPager
+            android:id="@+id/teeViewPager"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+        </com.qwertee.utilities.WrapContentHeightViewPager>
+
+        <RelativeLayout
+            android:id="@+id/tees"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="2dip"
+            android:layout_marginTop="2dip" >
+
+            <ImageButton
+                android:id="@+id/maximum_tee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/maximum_icon_button" />
+
+            <ImageButton
+                android:id="@+id/mens_tee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/zoom_tee"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/mens_tee" />
+
+            <ImageButton
+                android:id="@+id/zoom_tee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/womens_tee"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/zoom_tee" />
+
+            <ImageButton
+                android:id="@+id/womens_tee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/womens_tee" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/price_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background_price_item"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="@color/qwertee_black"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/imageInfoLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/background_image_info"
+        android:orientation="vertical"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/designNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/qwertee_black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/userNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/qwertee_black"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>
